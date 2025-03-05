@@ -1,3 +1,5 @@
+use std::iter::FusedIterator;
+
 impl<T: Clone, I: Iterator<Item = T> + Sized> IntersperseIterator for I {}
 
 pub trait IntersperseIterator: Iterator + Sized
@@ -22,6 +24,13 @@ where
     iter: I,
     iter_next: Option<Option<I::Item>>,
     intersperse_element: I::Item,
+}
+
+impl<I> FusedIterator for Intersperse<I>
+where
+    I: Iterator + Sized,
+    <I as Iterator>::Item: Clone,
+{
 }
 
 impl<I> Iterator for Intersperse<I>
