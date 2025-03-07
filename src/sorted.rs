@@ -19,7 +19,7 @@ pub trait SortedIterator: Iterator + Sized {
 
 pub trait SortedUnstableIterator: Iterator + Sized {
     /// Iterator adapter for positions
-    fn sorted(self) -> VecIntoIter<<Self as Iterator>::Item>
+    fn sorted_unstable(self) -> VecIntoIter<<Self as Iterator>::Item>
     where
         <Self as Iterator>::Item: Ord,
     {
